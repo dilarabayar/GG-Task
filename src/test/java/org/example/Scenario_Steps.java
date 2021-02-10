@@ -48,6 +48,15 @@ public class Scenario_Steps {
         element.click();
 
     }
+    @Step("User enters <total> number of product")
+    public void userEntersTotal(String total) throws InterruptedException {
+        scrollDown();
+        WebElement element = new WebDriverWait(webDriver, 80)
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(System.getenv("product_number"))));
+        element.click();
+        element.sendKeys(total);
+        Thread.sleep(4000);
+    }
 
     @Step("Add To Basket")
     public void userAddsToBasket() {
@@ -61,14 +70,15 @@ public class Scenario_Steps {
     public void goToBasket() throws InterruptedException {
         Actions actions = new Actions(webDriver);
 
-        //wait for it to add the product to basket
-        Thread.sleep(2000);
-
         WebElement element = new WebDriverWait(webDriver, 80)
                 .until(ExpectedConditions.elementToBeClickable(By.xpath(System.getenv("go_to_basket"))));
 
         actions.moveToElement(element).perform();
-        element.click();
+
+        WebElement basket = new WebDriverWait(webDriver, 80)
+                .until(ExpectedConditions.elementToBeClickable(By.xpath(System.getenv("click_to_basket"))));
+
+        basket.click();
     }
 
     public void scrollDown(){

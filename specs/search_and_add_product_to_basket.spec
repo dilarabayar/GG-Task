@@ -12,5 +12,6 @@ GG Search Product and Add to Basket
 * Click element "product"
 * Select variant "iphone_32"
 * Select variant "iphone_gold"
+* User enters "2" number of product
 * Add To Basket
 * Go to Basket
